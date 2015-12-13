@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="person" class="com.wmusial.model.Person" init-method="onCreate" destroy-method="destroy" scope="prototype">
+        <constructor-arg name="id" value="77"/>
+        <constructor-arg name="name" value="Mary"/>
+        <constructor-arg name="jobs">
+            <set>
+                <value>stazysta</value>
+                <value>stazysta1</value>
+                <value>stazysta1</value>
+                <value>kierownik</value>
+            </set>
+        </constructor-arg>
+        <property name="taxId" value="678"/>
+        <property name="address" ref="address"/>
+        <property name="pastAddresses">
+            <list>
+                <ref bean="home"/>
+            </list>
+        </property>
+        <property name="friends">
+            <props>
+                <prop key="Marian">Marian Kowalski</prop>
+            </props>
+        </property>
+
+        <property name="addresses">
+            <map>
+                <entry key="home" value-ref="home"/>
+                <entry key="work" value-ref="address"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="address" class="com.wmusial.model.Address">
+        <constructor-arg value="Sezamkowa"/>
+        <constructor-arg value="12"/>
+    </bean>
+
+    <bean id="home" class="com.wmusial.model.Address">
+        <constructor-arg value="Barwinek"/>
+        <constructor-arg value="12"/>
+    </bean>
+
+</beans>
